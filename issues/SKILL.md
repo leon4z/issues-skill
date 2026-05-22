@@ -27,6 +27,7 @@ This is not a GitHub Issues replacement. It is a local issue buffer for agent-as
 5. Implemented issues stay in `ISSUES.md` until the user explicitly asks to clean them up or approves a cleanup suggestion.
 6. Never delete issues during implementation. You may remind the user that implemented issues are ready for cleanup, but cleanup still requires explicit user approval.
 7. When implementing issues, follow the current project's normal planning, editing, testing, documentation, and commit rules.
+8. If a turn is issue-linked because the user named an issue id, `ISSUES.md` was read for the task, or an issue was implemented or updated, preserve that issue context through later verification, handoff, archive, or commit steps.
 
 ## Storage
 
@@ -118,7 +119,16 @@ When the user asks to implement issues:
 4. Follow the current project's normal implementation and verification rules.
 5. After verification, update completed items to `implemented` and add concise verification notes.
 6. Do not remove implemented items.
-7. In the final response, say how many implemented issues remain ready for cleanup.
+7. In the final response, list the touched issue ids and current statuses, and say how many implemented issues remain ready for cleanup.
+
+## Handoff Workflow
+
+When the current turn is issue-linked and the work reaches final handoff, archive, or commit:
+
+1. Re-read or re-check `ISSUES.md` if it may have changed since the issue was last updated.
+2. Report the touched issue ids and current statuses.
+3. If any touched issue is `implemented`, remind the user it is ready for cleanup, but cleanup still requires explicit approval.
+4. If the implementation flow switched into another flow, such as proposal, archive, or commit prep, do this issue handoff after that flow completes and before the final response.
 
 ## Cleanup Workflow
 
