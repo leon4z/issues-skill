@@ -13,11 +13,19 @@
 
 ## 不适用场景
 
+- 方法论、经验总结或可复用的工作原则
+- Benchmark 结论、研究发现或一般性文档
+- 已经确定且没有后续工作的架构或产品决策
+- 与既有 Issue 无关的一般状态总结或 handoff 记录
 - 团队通知或权限流程
 - 长讨论串
 - 发布计划
 - 跨仓库 issue 管理
 - 替代 GitHub Issues、Jira、Linear 或其他正式跟踪系统
+
+“记录一下”“先记下来”等表达本身不代表这是一个 issue。只有当内容指向未来仍需完成的项目工作或尚未解决的选择，并且能够说明完成条件时，才应写入 `ISSUES.md`。
+
+如果查询、状态总结或 handoff 明确涉及已有 Issue ID 或 `ISSUES.md`，仍然属于这个 skill 的适用范围。
 
 ## 目录结构
 
@@ -28,9 +36,15 @@ issues-skill/
   LICENSE
   issues/
     SKILL.md
+    evals/
+      evals.json
+      files/
+        ISSUES.md
+      trigger-evals.json
 ```
 
 可安装的 skill 是 `issues/` 目录。
+行为评测覆盖新 Issue 的捕获以及对既有 Issue 台账的操作。触发评测集包含数量均衡的正例和易混淆反例，用来检查“记录一下”等泛化表达不会造成误触发。
 
 ## 安装
 

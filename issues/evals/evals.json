@@ -1,0 +1,63 @@
+{
+  "skill_name": "issues",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "把标题切分优化记为待办，验收标准是重跑 FP052 后正确制度排到第一位。",
+      "expected_output": "Create or update an actionable issue with a future action, an observable acceptance condition, and an appropriate open or ready status.",
+      "files": [],
+      "expectations": [
+        "The output creates an issue for improving title-based chunking.",
+        "The issue acceptance criteria require FP052 to rank the correct policy first after rerunning the benchmark.",
+        "The issue uses open or ready status and does not claim implementation or verification is complete."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "查看提供的 ISSUES.md，告诉我所有 implemented 条目的 ID 和数量，不要清理或修改文件。",
+      "expected_output": "Read the existing issue ledger and report every implemented issue ID and the total count without applying the new-item classification gate or deleting anything.",
+      "files": [
+        "evals/files/ISSUES.md"
+      ],
+      "expectations": [
+        "The output reports I-001 and I-003 as implemented.",
+        "The output reports exactly 2 implemented issues.",
+        "The supplied ISSUES.md remains unchanged."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "把这次 PDF 测试的结论沉淀成企业知识库建设方法论，不需要后续执行，也不要建立待办。",
+      "expected_output": "Do not create or modify ISSUES.md. Route the content to a methodology or knowledge document that follows the project's existing structure.",
+      "files": [],
+      "expectations": [
+        "The output does not create or modify ISSUES.md.",
+        "The output treats the requested content as methodology or reusable knowledge rather than an actionable issue."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "我们已经决定对象存储保存原件。把落地元数据校验的后续工作记成 issue，完成条件是导入测试能够验证原件哈希。",
+      "expected_output": "Capture only the explicit follow-up work as an actionable issue; treat the already-made architecture decision as context rather than rejecting the request.",
+      "files": [],
+      "expectations": [
+        "The output creates an issue for implementing metadata validation.",
+        "The acceptance criteria require an import test that verifies the original file hash.",
+        "The already-made object-storage decision is retained only as context and is not represented as an unresolved decision."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "准备交接：这次处理过的条目是 I-004。重新检查提供的 ISSUES.md，列出 touched issue、所有 implemented issue 及数量，并提醒这些条目需要明确批准才能清理。",
+      "expected_output": "Run the issue-linked handoff workflow and report the required issue statuses and cleanup reminder.",
+      "files": [
+        "evals/files/ISSUES.md"
+      ],
+      "expectations": [
+        "The output identifies I-004 as the touched issue and reports its ready status.",
+        "The output reports I-001 and I-003 as the full implemented set and gives a total count of 2.",
+        "The output says implemented issues are ready for cleanup but require explicit user approval."
+      ]
+    }
+  ]
+}

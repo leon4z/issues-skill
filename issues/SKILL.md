@@ -1,6 +1,6 @@
 ---
 name: issues
-description: Use when the user wants to capture, organize, implement, or clean up lightweight project-local issues found during testing, review, implementation, or discussion. Default to recording actionable issues in the current project's ISSUES.md so unresolved decisions and verified fixes do not get lost. Do not use for general notes, full conversation transcripts, or formal project management unless the user asks to record or batch the item as an issue.
+description: Use for actionable project-local work items that need a lifecycle such as open, ready, implemented, and verified, and for operations on existing issue IDs or ISSUES.md. Trigger when the user wants to capture, query, organize, implement, hand off, or clean up a bug, fix, TODO, follow-up action, unresolved project decision, named issue ID, or existing issue ledger. Do not trigger for methodology, lessons learned, reusable principles, completed architectural decisions, research findings, benchmark conclusions, general documentation, or handoffs and status summaries unrelated to existing issues, even when the user says "记录一下", "先记下来", "record this", or "remember this". If such content is explicitly turned into a follow-up item with a closure condition, it can be captured as an issue.
 ---
 
 # Issues
@@ -21,7 +21,7 @@ This is not a GitHub Issues replacement. It is a local issue buffer for agent-as
 ## Core Rules
 
 1. Capturing or organizing issues does not imply implementation.
-2. Record only actionable issues, not full conversation transcripts or general notes.
+2. Record only actionable issues with a future action or unresolved choice and a meaningful closure condition.
 3. Prefer updating an existing issue over creating a duplicate.
 4. Keep item IDs stable. Do not renumber existing items.
 5. Implemented issues stay in `ISSUES.md` until the user explicitly asks to clean them up or approves a cleanup suggestion.
@@ -29,6 +29,29 @@ This is not a GitHub Issues replacement. It is a local issue buffer for agent-as
 7. When implementing issues, follow the current project's normal planning, editing, testing, documentation, and commit rules.
 8. If a turn is issue-linked because the user named an issue id, `ISSUES.md` was read for the task, or an issue was implemented or updated, preserve that issue context through later verification, handoff, archive, or commit steps.
 9. If a turn reads or modifies `ISSUES.md`, the final handoff must report all currently `implemented` issue IDs and count, even when they were not touched in the current turn, and remind the user they are ready for cleanup but require explicit approval.
+
+## Classification Gate
+
+Apply this gate only before capturing or creating a new issue. Do not use it to block queries, organization, implementation, handoff, or cleanup involving an existing issue ID or `ISSUES.md`; enter the corresponding workflow directly for those operations.
+
+A new candidate belongs in the issue ledger only when:
+
+1. It describes unresolved project work, a defect, a follow-up action, or a decision that still needs to be made.
+2. A next action such as implement, investigate, decide, or verify can be named.
+3. An observable completion or closure condition can be stated.
+4. Tracking a lifecycle status is useful.
+
+If these conditions are not met, do not create an issue. Route the information according to its purpose and the project's existing conventions:
+
+| Information type | Preferred destination |
+| --- | --- |
+| Bug, fix, TODO, follow-up action, or unresolved project decision | `ISSUES.md` |
+| Reusable methodology, lesson learned, or operating principle | Methodology or knowledge document |
+| Architectural or product decision already made | Decision record |
+| Benchmark observation, result, or research finding | Benchmark or research report |
+| Current project state or continuity context | README, status document, or handoff |
+
+Words such as "问题", "issue", "测试发现", "记录一下", or "先记下来" are not sufficient by themselves. Infer the intended artifact from the surrounding conversation and project structure. If the intent remains genuinely ambiguous and choosing the wrong artifact would materially change the result, ask one concise clarification instead of defaulting to `ISSUES.md`.
 
 ## Storage
 
@@ -89,7 +112,12 @@ Omit `Links` when there is no useful reference.
 
 ## Capture Workflow
 
-When the user says things like "record this", "remember this for later", "put this into issues", "记一个 issue", "后面一起改", or "先记下来":
+Use this workflow in either of two cases:
+
+1. The user asks to create a new issue and the classification gate is satisfied.
+2. The user asks to update only the ledger fields of an existing issue; the new-item classification gate does not apply.
+
+Mentioning an issue ID does not select this workflow by itself; route by the requested action. For example, "implement I-004" uses the Implementation Workflow, while "change I-004 acceptance criteria" uses this capture/update workflow. Generic capture phrases such as "record this", "remember this for later", or "先记下来" activate this workflow only when the surrounding context clearly describes future project work with a closure condition.
 
 1. Read `ISSUES.md` if it exists.
 2. Identify whether this is new or updates an existing item.
@@ -98,6 +126,24 @@ When the user says things like "record this", "remember this for later", "put th
 5. Use `open` when the problem is clear but the decision is still being discussed.
 6. Add `Links` only when there is a useful reference.
 7. Do not edit code.
+
+## Boundary Examples
+
+Should trigger:
+
+- "把这个 bug 记到 `ISSUES.md`，后面修复。"
+- "标题切分需要优化，先记为待办；验收标准是 FP052 重跑后命中正确制度。"
+- "实现 I-004，并在测试通过后更新状态。"
+- "这个方案还没定，记一个 issue 跟踪选型和验收结果。"
+- "交接前列出 `ISSUES.md` 中所有 implemented 条目和当前状态。"
+
+Should not trigger:
+
+- "把这次测试暴露的问题沉淀成企业知识库建设方法论。"
+- "记录一个原则：不能依赖人工审核每个文档标题。"
+- "把 PDF Benchmark 的结果和结论整理进报告。"
+- "记录我们已经确定的架构选择和原因。"
+- "把目前做到哪里写进 handoff，方便下个 Agent 接手。"
 
 ## Organize Workflow
 

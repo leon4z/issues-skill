@@ -13,11 +13,19 @@ It is more structured than a TODO list and lighter than a full issue tracker. Th
 
 ## What It Is Not For
 
+- Methodology, lessons learned, or reusable operating principles
+- Benchmark conclusions, research findings, or general documentation
+- Architectural or product decisions that have already been made and have no follow-up work
+- General status summaries or handoff notes unrelated to existing issues
 - Team notification or permission workflows
 - Long discussion threads
 - Release planning
 - Cross-repository issue management
 - Replacing GitHub Issues, Jira, Linear, or another formal tracker
+
+Phrases such as "record this", "remember this", or "先记下来" do not make something an issue by themselves. An item belongs in `ISSUES.md` only when it represents future project work or an unresolved choice with a meaningful completion condition.
+
+Queries, status summaries, and handoffs that explicitly concern existing issue IDs or `ISSUES.md` remain part of the skill.
 
 ## Skill Layout
 
@@ -28,9 +36,15 @@ issues-skill/
   LICENSE
   issues/
     SKILL.md
+    evals/
+      evals.json
+      files/
+        ISSUES.md
+      trigger-evals.json
 ```
 
 The installable skill is the `issues/` directory.
+The behavior evals cover issue capture and operations on an existing ledger. The trigger eval set contains balanced positive and near-miss prompts for checking that generic phrases such as "record this" do not cause false activation.
 
 ## Installation
 

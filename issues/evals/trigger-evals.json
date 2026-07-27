@@ -1,0 +1,82 @@
+[
+  {
+    "query": "登录页偶尔会把有效验证码判成过期。把这个 bug 记到 ISSUES.md，后面修复时要补并发刷新测试。",
+    "should_trigger": true
+  },
+  {
+    "query": "标题切分需要优化，先记为待办。验收标准是重跑 FP052 后，正确制度排到第一位。",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我整理当前项目里的 issues，把重复项合并，但先不要实现。",
+    "should_trigger": true
+  },
+  {
+    "query": "实现 I-004，测试通过后把状态和验证记录一起更新。",
+    "should_trigger": true
+  },
+  {
+    "query": "导入预览应该一次展示所有阻断冲突，这个后面一起改，先记录下来并写清验收条件。",
+    "should_trigger": true
+  },
+  {
+    "query": "我们还没决定缓存失效用事件通知还是短 TTL。记一个 issue 跟踪这个选择，等压测后再定。",
+    "should_trigger": true
+  },
+  {
+    "query": "查一下 ISSUES.md 里有哪些 implemented 项，但不要清理。",
+    "should_trigger": true
+  },
+  {
+    "query": "清理 I-003 和 I-007，其他 open 和 ready 条目都保留。",
+    "should_trigger": true
+  },
+  {
+    "query": "代码评审发现导出失败时会覆盖上一次成功结果。先记成 issue，完成条件是保留旧结果并单独显示新错误。",
+    "should_trigger": true
+  },
+  {
+    "query": "把测试中发现的几个待修复项批量写进 ISSUES.md，每项都保留来源和验证方式。",
+    "should_trigger": true
+  },
+  {
+    "query": "把这次 PDF 测试暴露的问题沉淀成企业知识库建设方法论：不能依赖人工确认每份文档的全部标题边界。",
+    "should_trigger": false
+  },
+  {
+    "query": "先记下来：对于制度类文档，标题识别要结合编号、字号、上下文和目录结构。这是一条以后可复用的解析原则。",
+    "should_trigger": false
+  },
+  {
+    "query": "整理 PDF Benchmark 的实验结果，包括耗时、Recall@1、Recall@5 和失败题型，写进评测报告。",
+    "should_trigger": false
+  },
+  {
+    "query": "记录我们已经确定的架构决策：对象存储保存原件，关系数据库作为权限和版本事实源，并解释原因。",
+    "should_trigger": false
+  },
+  {
+    "query": "把当前做到哪里、已经跑过哪些命令和下一步建议写进 handoff，方便下个 Agent 接手。",
+    "should_trigger": false
+  },
+  {
+    "query": "我在复盘项目，帮我把这次踩坑和经验教训整理成一篇团队知识库文章。",
+    "should_trigger": false
+  },
+  {
+    "query": "先记一下今天讨论的内容，不需要后续执行，也没有待决定事项，放到会议纪要里就行。",
+    "should_trigger": false
+  },
+  {
+    "query": "解释一下为什么 FP052 的 Recall@1 下降，这次只做原因分析，不修改也不建立待办。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我把 README 的项目现状更新一下，说明 PDF Benchmark 已经完成，以及结果看板的位置。",
+    "should_trigger": false
+  },
+  {
+    "query": "总结 Docling、MinerU 和 PyMuPDF 的适用边界，形成一份长期维护的工具选型指南。",
+    "should_trigger": false
+  }
+]
